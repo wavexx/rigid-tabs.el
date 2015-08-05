@@ -1,14 +1,28 @@
-virtual-shift-tabs.el: Adjust the visual alignment of TABs in unified diffs
-===========================================================================
+rigid-tabs.el: Rigidify and adjust the visual alignment of TABs
+===============================================================
 
 Unified diffs introduce one or more prefix characters that alter the target
 column of the displayed TABs. The resulting misalignment may make code
 indentation look suspicious and overall harder to read, even though it's
 perfectly aligned when the patch is applied.
 
-The function ``virtual-shift-tabs`` can be called in major modes displaying
-unified diffs (such as ``diff-mode``, ``magit-diff``, etc) to compensate for
-the initial +/- prefix.
+``rigid-tabs-mode`` "rigidifies" all TABs in the current buffer, preserving
+their width but making them non-flexible just like a block of spaces.
+
+The function ``rigid-tabs-rigid-align`` turns on ``rigid-tabs-mode`` and
+adjusts the visual alignment of TABs in major modes displaying unified diffs
+(such as ``diff-mode``, ``magit-diff``, etc) to compensate for the initial +/-
+prefix. The result is a diff that looks indented as if applied on the source.
+
+To fix alignment in the various diff/magit modes, use the following:
+
+.. code:: elisp
+
+  (add-hook 'diff-mode-hook 'rigid-tabs-rigid-align)
+  (add-hook 'magit-refresh-buffer-hook
+            (lambda ()
+              (when (member major-mode '(magit-diff-mode magit-revision-mode))
+                (rigid-tabs-rigid-align))))
 
 In essence, it turns a buffer displaying TABs like this:
 
