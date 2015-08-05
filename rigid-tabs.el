@@ -38,13 +38,11 @@
 ;; as `diff-mode', `magit-diff', etc) to compensate for the initial +/- prefix.
 ;; The result is a diff that looks indented as if applied on the source.
 ;;
-;; To fix alignment in the various diff/magit modes, use the following:
+;; To fix alignment in the various diff/magit modes, use
+;; `rigid-tabs-diff-align' to detect the prefix automatically:
 ;;
-;; (add-hook 'diff-mode-hook 'rigid-tabs-rigid-align)
-;; (add-hook 'magit-refresh-buffer-hook
-;;           (lambda ()
-;;             (when (member major-mode '(magit-diff-mode magit-revision-mode))
-;;               (rigid-tabs-rigid-align))))
+;; (add-hook 'diff-mode-hook 'rigid-tabs-diff-align)
+;; (add-hook 'magit-refresh-buffer-hook 'rigid-tabs-diff-align)
 
 ;;; Code:
 
@@ -75,6 +73,23 @@ their visual alignment by 'shift-chars forward (defaulting to 1). Turns on
   (rigid-tabs--rigid-align-region (point-min) (point-max))
   (unless rigid-tabs-mode
     (rigid-tabs--turn-on)))
+
+;;;###autoload
+(defun rigid-tabs-diff-align ()
+  "Turn on `rigid-tabs-mode' according to the current major mode and diff
+format. Only `diff-mode' and various magit modes are supported. Use
+`rigid-tabs-rigid-align' directly in other modes."
+  (interactive)
+  (cond
+    ((eq major-mode 'diff-mode)
+     ;; detect the diff format using `diff-hunk-style'
+     (let ((style (save-excursion
+		    (when (re-search-forward diff-hunk-header-re nil t)
+		      (goto-char (match-beginning 0))
+		      (diff-hunk-style)))))
+       (rigid-tabs-rigid-align (if (eq style 'unified) 1 2))))
+    ((member major-mode '(magit-diff-mode magit-revision-mode))
+     (rigid-tabs-rigid-align 1))))
 
 
 (defvar-local rigid-tabs-shift-chars nil)

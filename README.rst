@@ -15,15 +15,13 @@ adjusts the visual alignment of TABs in major modes displaying unified diffs
 (such as ``diff-mode``, ``magit-diff``, etc) to compensate for the initial +/-
 prefix. The result is a diff that looks indented as if applied on the source.
 
-To fix alignment in the various diff/magit modes, use the following:
+To fix alignment in the various diff/magit modes, use ``rigid-tabs-diff-align``
+to detect the prefix automatically:
 
 .. code:: elisp
 
-  (add-hook 'diff-mode-hook 'rigid-tabs-rigid-align)
-  (add-hook 'magit-refresh-buffer-hook
-            (lambda ()
-              (when (member major-mode '(magit-diff-mode magit-revision-mode))
-                (rigid-tabs-rigid-align))))
+  (add-hook 'diff-mode-hook 'rigid-tabs-diff-align)
+  (add-hook 'magit-refresh-buffer-hook 'rigid-tabs-diff-align)
 
 In essence, it turns a buffer displaying TABs like this:
 
