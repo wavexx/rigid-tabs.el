@@ -7,7 +7,8 @@ indentation look suspicious and overall harder to read, even though it's
 perfectly aligned when the patch is applied.
 
 ``rigid-tabs-mode`` "rigidifies" all TABs in the current buffer, preserving
-their width but making them non-flexible just like a block of spaces.
+their width but making them non-flexible just like a block of spaces. This
+allows TABs to be shifted without changing their width.
 
 The function ``rigid-tabs-rigid-align`` turns on ``rigid-tabs-mode`` and
 adjusts the visual alignment of TABs in major modes displaying unified diffs

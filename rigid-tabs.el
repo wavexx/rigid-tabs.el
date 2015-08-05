@@ -3,7 +3,6 @@
 ;; Author: Yuri D'Elia <wavexx@thregr.org>
 ;; Version: 1.0
 ;; URL: https://github.com/wavexx/rigid-tabs.el
-;; Package-Requires: ()
 ;; Keywords: diff, whitespace, version control
 
 ;; This file is NOT part of GNU Emacs.
@@ -25,8 +24,14 @@
 
 ;;; Commentary:
 
+;; Unified diffs introduce one or more prefix characters that alter the target
+;; column of the displayed TABs. The resulting misalignment may make code
+;; indentation look suspicious and overall harder to read, even though it's
+;; perfectly aligned when the patch is applied.
+;;
 ;; `rigid-tabs-mode' "rigidifies" all TABs in the current buffer, preserving
-;; their width but making them non-flexible just like a block of spaces.
+;; their width but making them non-flexible just like a block of spaces. This
+;; allows TABs to be shifted without changing their width.
 ;;
 ;; The function `rigid-tabs-rigid-align' turns on `rigid-tabs-mode' and adjusts
 ;; the visual alignment of TABs in major modes displaying unified diffs (such
@@ -109,12 +114,6 @@ their visual alignment by 'shift-chars forward (defaulting to 1). Turns on
     (overlay-put ovr 'insert-in-front-hooks '(rigid-tabs--insert-in-front))
     (overlay-put ovr 'modifications-hooks '(rigid-tabs--modify))
     (overlay-put ovr 'display `(space . (:width ,spaces)))))
-
-(defun rigid-tabs--spaces-to-next-stop (column)
-  (let* ((column (- column rigid-tabs-shift-chars))
-	 (target (+ (* (/ column tab-width) tab-width) tab-width))
-	 (spaces (- target column)))
-    spaces))
 
 (defun rigid-tabs--insert-in-front (ovr after-change beg end &optional length)
   (when after-change
