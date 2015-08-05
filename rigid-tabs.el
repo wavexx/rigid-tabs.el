@@ -46,6 +46,12 @@
 
 ;;; Code:
 
+(eval-when-compile
+  (require 'diff-mode))
+
+(defvar-local rigid-tabs-shift-chars 0)
+
+
 ;;;###autoload
 (define-minor-mode rigid-tabs-mode
     "Rigidify all TABs in the current buffer, making them non-flexible just
@@ -55,21 +61,18 @@ modes properly (turns on `rigid-tabs-mode' as a result)."
     :lighter " RTab"
     (cond
       (rigid-tabs-mode
-       (rigid-tabs-rigid-align (or rigid-tabs-shift-chars 0))
+       (rigid-tabs-rigid-align)
        (rigid-tabs--turn-on))
       (t
-       (remove-hook 'after-change-functions 'rigid-tabs--rigid-align-region)
+       (remove-hook 'after-change-functions 'rigid-tabs--rigid-align-region t)
        (rigid-tabs--remove))))
 
 ;;;###autoload
 (defun rigid-tabs-rigid-align (&optional shift-chars)
   "Rigidify TABs in the current buffer (make them non-flexible) and adjust
-their visual alignment by 'shift-chars forward (defaulting to 1). Turns on
-`rigid-tabs-mode' as a result."
-  (if shift-chars
-    (setq rigid-tabs-shift-chars shift-chars)
-    (unless rigid-tabs-shift-chars
-      (setq rigid-tabs-shift-chars 1)))
+their visual alignment by 'shift-chars forward. Turns on `rigid-tabs-mode'."
+  (when shift-chars
+    (setq rigid-tabs-shift-chars shift-chars))
   (rigid-tabs--rigid-align-region (point-min) (point-max))
   (unless rigid-tabs-mode
     (rigid-tabs--turn-on)))
@@ -92,10 +95,8 @@ format. Only `diff-mode' and various magit modes are supported. Use
      (rigid-tabs-rigid-align 1))))
 
 
-(defvar-local rigid-tabs-shift-chars nil)
-
 (defun rigid-tabs--turn-on ()
-  (add-hook 'after-change-functions 'rigid-tabs--rigid-align-region)
+  (add-hook 'after-change-functions 'rigid-tabs--rigid-align-region nil t)
   (setq rigid-tabs-mode t))
 
 (defun rigid-tabs--remove ()
