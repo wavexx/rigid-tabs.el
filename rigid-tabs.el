@@ -3,6 +3,7 @@
 ;; Author: Yuri D'Elia <wavexx@thregr.org>
 ;; Version: 1.0
 ;; URL: https://github.com/wavexx/rigid-tabs.el
+;; Package-Requires: ((emacs "24.3"))
 ;; Keywords: diff, whitespace, version control, magit
 
 ;; This file is NOT part of GNU Emacs.

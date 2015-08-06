@@ -25,8 +25,8 @@ to detect the prefix automatically:
 
 In essence, it turns a buffer displaying TABs like this:
 
-.. image:: http://www.thregr.org/~wavexx/rnd/20150805-virtual_shift_tabs/patch-unaligned-2.png
+.. image:: http://www.thregr.org/~wavexx/rnd/20150805-rigid_tabs/patch-unaligned-2.png
 
 into this:
 
-.. image:: http://www.thregr.org/~wavexx/rnd/20150805-virtual_shift_tabs/patch-aligned-2.png
+.. image:: http://www.thregr.org/~wavexx/rnd/20150805-rigid_tabs/patch-aligned-2.png
