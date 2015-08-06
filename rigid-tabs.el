@@ -40,7 +40,7 @@
 ;; The result is a diff that looks indented as if applied on the source.
 ;;
 ;; To fix alignment in the various diff/magit modes, use
-;; `rigid-tabs-diff-align' to detect the prefix automatically:
+;; `rigid-tabs-diff-align' to detect the amount of prefix automatically:
 ;;
 ;; (add-hook 'diff-mode-hook 'rigid-tabs-diff-align)
 ;; (add-hook 'magit-refresh-buffer-hook 'rigid-tabs-diff-align)

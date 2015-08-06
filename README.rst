@@ -16,7 +16,7 @@ adjusts the visual alignment of TABs in major modes displaying diffs (such as
 The result is a diff that looks indented as if applied on the source.
 
 To fix alignment in the various diff/magit modes, use ``rigid-tabs-diff-align``
-to detect the prefix automatically:
+to detect the amount of prefix automatically:
 
 .. code:: elisp
 
@@ -30,3 +30,5 @@ In essence, it turns a buffer displaying TABs like this:
 into this:
 
 .. image:: http://www.thregr.org/~wavexx/rnd/20150805-rigid_tabs/patch-aligned-2.png
+
+without actually changing the content of the buffer.
