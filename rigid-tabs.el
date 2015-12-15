@@ -48,8 +48,7 @@
 
 ;;; Code:
 
-(eval-when-compile
-  (require 'diff-mode))
+(require 'diff-mode)
 
 (defvar-local rigid-tabs-shift-chars 0)
 
