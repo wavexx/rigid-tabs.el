@@ -1,6 +1,16 @@
 rigid-tabs.el: Rigidify and adjust the visual alignment of TABs
 ===============================================================
 
+``rigid-tabs-mode`` turns a buffer displaying TABs like this:
+
+.. image:: http://www.thregr.org/~wavexx/rnd/20150805-rigid_tabs/patch-unaligned-2.png
+
+into this:
+
+.. image:: http://www.thregr.org/~wavexx/rnd/20150805-rigid_tabs/patch-aligned-2.png
+
+without actually changing the content of the buffer.
+
 ``rigid-tabs-mode`` "rigidifies" all TABs in the current buffer, preserving
 their initial width but making them non-flexible just like a block of spaces.
 This allows TABs to be moved around without changing width.
@@ -23,13 +33,3 @@ and context diffs automatically:
 
   (add-hook 'diff-mode-hook 'rigid-tabs-diff-align)
   (add-hook 'magit-refresh-buffer-hook 'rigid-tabs-diff-align)
-
-In essence, ``rigid-tabs-mode`` turns a buffer displaying TABs like this:
-
-.. image:: http://www.thregr.org/~wavexx/rnd/20150805-rigid_tabs/patch-unaligned-2.png
-
-into this:
-
-.. image:: http://www.thregr.org/~wavexx/rnd/20150805-rigid_tabs/patch-aligned-2.png
-
-without actually changing the content of the buffer.
