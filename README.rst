@@ -1,7 +1,7 @@
 rigid-tabs.el: Rigidify and adjust the visual alignment of TABs
 ===============================================================
 
-``rigid-tabs-mode`` turns a buffer displaying TABs like this:
+``rigid-tabs-mode`` turns a "diff" buffer displaying TABs like this:
 
 .. image:: https://www.thregr.org/~wavexx/rnd/20150805-rigid_tabs/patch-unaligned-2.png
 

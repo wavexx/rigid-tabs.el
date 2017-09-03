@@ -1,4 +1,4 @@
-;;; rigid-tabs.el --- Rigidify and adjust the visual alignment of TABs  -*- lexical-binding: t -*-
+;;; rigid-tabs.el --- Fix TAB alignment in diff buffers  -*- lexical-binding: t -*-
 
 ;; Author: Yuri D'Elia <wavexx@thregr.org>
 ;; Version: 1.0
@@ -25,6 +25,9 @@
 
 ;;; Commentary:
 
+;; `rigid-tabs-mode' fixes the visual alignment of TABs in diff buffers without
+;; actually changing the content of the buffer.
+;;
 ;; `rigid-tabs-mode' "rigidifies" all TABs in the current buffer, preserving
 ;; their initial width but making them non-flexible just like a block of
 ;; spaces. This allows TABs to be moved around without changing width.
