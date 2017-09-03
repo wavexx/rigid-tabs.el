@@ -1,4 +1,4 @@
-;;; rigid-tabs.el --- Rigidify and adjust the visual alignment of TABs
+;;; rigid-tabs.el --- Rigidify and adjust the visual alignment of TABs  -*- lexical-binding: t -*-
 
 ;; Author: Yuri D'Elia <wavexx@thregr.org>
 ;; Version: 1.0
